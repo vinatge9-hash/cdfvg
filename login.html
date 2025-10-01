@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Agent Login | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E3A8A'}}}};</script>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <div class='min-h-screen flex items-center justify-center bg-gray-100'>
+    <form class='bg-white p-6 rounded-lg shadow-md w-full max-w-md'>
+      <h2 class='text-xl font-bold mb-4'>Agent Sign In</h2>
+      <div class='mb-3'>
+        <label class='block text-sm mb-1'>Email</label>
+        <input type='email' required class='w-full border border-gray-300 rounded px-3 py-2'>
+      </div>
+      <div class='mb-3'>
+        <label class='block text-sm mb-1'>Password</label>
+        <input type='password' required class='w-full border border-gray-300 rounded px-3 py-2'>
+      </div>
+      <button type='submit' class='w-full bg-primary text-white py-2 rounded'>Login</button>
+      <p class='text-xs text-gray-600 mt-2'>This is a demo login for demonstration purposes.</p>
+    </form>
+  </div>
+</body>
+</html>
