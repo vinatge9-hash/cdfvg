@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Contact Us | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#2563EB',accent:'#F59E0B'}}}};</script>
+  <style> html{scroll-behavior:smooth;} </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary'>Home</a>
+          <a href='listings.html' class='hover:text-primary'>Listings</a>
+          <a href='agents.html' class='hover:text-primary'>Agents</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class='pt-24 pb-6 bg-gradient-to-br from-primary to-secondary text-white'>
+    <div class='container mx-auto px-6'>
+      <h1 class='text-3xl font-bold'>Get in Touch</h1>
+      <p class='mt-2'>We’d love to help you take the next step. Reach out to schedule a tour or ask questions.</p>
+    </div>
+  </header>
+
+  <main class='py-12'>
+    <section class='container mx-auto px-6'>
+      <form id='contact-form' class='grid md:grid-cols-2 gap-4 bg-white p-4 rounded-lg shadow'>
+        <input type='text' placeholder='Full Name' required class='border border-gray-300 rounded px-3 py-2' />
+        <input type='email' placeholder='Email' required class='border border-gray-300 rounded px-3 py-2' />
+        <input type='tel' placeholder='Phone' class='border border-gray-300 rounded px-3 py-2' />
+        <input type='text' placeholder='City, State' class='border border-gray-300 rounded px-3 py-2' />
+        <textarea placeholder='Your Message' rows='4' class='col-span-2 border border-gray-300 rounded px-3 py-2'></textarea>
+        <button type='submit' class='bg-primary text-white py-2 px-4 rounded'>Submit</button>
+      </form>
+      <div id='form-status' class='hidden mt-4 p-4 rounded-lg bg-green-100 text-green-800'></div>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6 text-center'>
+      <p class='text-gray-400'>© 2025 Everest Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const status = document.getElementById('form-status');
+      status.textContent = 'Thank you for reaching out. We will contact you shortly.';
+      status.classList.remove('hidden');
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>
