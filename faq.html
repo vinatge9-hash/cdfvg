@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>FAQ | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#2563EB'}}}};</script>
+  <style> html{scroll-behavior:smooth;} </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary'>Home</a>
+          <a href='listings.html' class='hover:text-primary'>Listings</a>
+          <a href='contact.html' class='hover:text-primary'>Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class='pt-20 pb-6 bg-gradient-to-br from-primary to-secondary text-white'>
+    <div class='container mx-auto px-6'>
+      <h1 class='text-3xl font-bold'>Frequently Asked Questions</h1>
+      <p class='mt-2'>Answers to common questions about buying, selling, and our services.</p>
+    </div>
+  </header>
+
+  <main class='py-12'>
+    <section class='container mx-auto px-6'>
+      <div class='bg-white p-6 rounded-lg shadow mb-4'>
+        <h3 class='font-semibold mb-2'>Do you provide real estate IDX feeds?</h3>
+        <p class='text-gray-700'>Yes. Everest Real Estate integrates IDX/MLS feeds to display real-time listings, ensuring clients see current opportunities. We securely connect to multiple MLS providers to keep data fresh while honoring licensing agreements.</p>
+      </div>
+      <div class='bg-white p-6 rounded-lg shadow mb-4'>
+        <h3 class='font-semibold mb-2'>Can I search by neighborhood or school district?</h3>
+        <p class='text-gray-700'>Absolutely. Our search supports location radius, neighborhood filters, school districts, and other criteria to help you find the right fit.</p>
+      </div>
+      <div class='bg-white p-6 rounded-lg shadow'>
+        <h3 class='font-semibold mb-2'>Is there a mortgage calculator available?</h3>
+        <p class='text-gray-700'>Yes. Use our mortgage calculator on property pages or the dedicated mortgage tool page to estimate monthly payments based on price, down payment, and interest rate.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6 text-center'>
+      <p class='text-gray-400'>© 2025 Everest Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
