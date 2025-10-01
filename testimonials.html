@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Client Testimonials | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#2563EB'}}}};</script>
+  <style> html{scroll-behavior:smooth;} </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary'>Home</a>
+          <a href='listings.html' class='hover:text-primary'>Listings</a>
+          <a href='about.html' class='hover:text-primary'>About</a>
+          <a href='contact.html' class='hover:text-primary'>Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class='pt-20 pb-6 bg-gradient-to-br from-primary to-secondary text-white'>
+    <div class='container mx-auto px-6'>
+      <h1 class='text-3xl font-bold'>Client Testimonials</h1>
+      <p class='mt-2'>What buyers and sellers say about working with Everest Real Estate.</p>
+    </div>
+  </header>
+
+  <main class='py-12'>
+    <section class='container mx-auto px-6'>
+      <div class='grid md:grid-cols-3 gap-6'>
+        <blockquote class='bg-white p-6 rounded-xl shadow'>
+          <p>"The team listened to our needs and found us a home with a perfect neighborhood fit. 10/10 would recommend."</p>
+          <cite class='block mt-2 font-semibold'>- Maria G.</cite>
+        </blockquote>
+        <blockquote class='bg-white p-6 rounded-xl shadow'>
+          <p>"Professional, transparent, and remarkably responsive throughout the process. Made buying our first home seamless."</p>
+          <cite class='block mt-2 font-semibold'>- James L.</cite>
+        </blockquote>
+        <blockquote class='bg-white p-6 rounded-xl shadow'>
+          <p>"Their market analysis helped us price competitively and close quickly with excellent terms."</p>
+          <cite class='block mt-2 font-semibold'>- Priya K.</cite>
+        </blockquote>
+      </div>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6 text-center'>
+      <p class='text-gray-400'>© 2025 Everest Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
