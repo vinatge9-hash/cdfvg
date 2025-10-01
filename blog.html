@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Blog | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#2563EB',accent:'#F59E0B'}}}};</script>
+  <style> html{scroll-behavior:smooth;} </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary'>Home</a>
+          <a href='listings.html' class='hover:text-primary'>Listings</a>
+          <a href='about.html' class='hover:text-primary'>About</a>
+          <a href='contact.html' class='hover:text-primary'>Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class='pt-20 pb-6 bg-gradient-to-br from-primary to-secondary text-white'>
+    <div class='container mx-auto px-6'>
+      <h1 class='text-3xl font-bold'>Real Estate Insights & Neighborhood Guides</h1>
+      <p class='mt-2'>Market trends, buying tips, and community spotlights from Everest Real Estate.</p>
+    </div>
+  </header>
+
+  <main class='py-12'>
+    <section class='container mx-auto px-6'>
+      <article class='mb-8 bg-white p-4 rounded-lg shadow'>
+        <h2 class='text-2xl font-bold mb-2'>What to know before buying your first home</h2>
+        <p class='text-gray-700'>Understanding pre-approval, down payments, and interest rates helps buyers feel confident in negotiations. Our agents guide you through every step with clear explanations and real-world scenarios.</p>
+      </article>
+      <article class='mb-8 bg-white p-4 rounded-lg shadow'>
+        <h2 class='text-2xl font-bold mb-2'>Neighborhood Spotlight: Riverside</h2>
+        <p class='text-gray-700'>Riverside blends family-friendly parks with canopy-shaded streets. Proximity to schools, transit, and vibrant local eateries makes it a top pick for buyers who want balance.</p>
+      </article>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6 text-center'>
+      <p class='text-gray-400'>© 2025 Everest Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
