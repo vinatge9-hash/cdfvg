@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Listings | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: { colors: { primary: '#1E3A8A', secondary: '#2563EB', accent: '#F59E0B' } } }
+    }
+  </script>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+    .animate-fadeIn { animation: fadeIn .6s ease-out forwards; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <!-- Navbar (repeatable) -->
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary transition'>Home</a>
+          <a href='listings.html' class='hover:text-primary transition'>Listings</a>
+          <a href='agents.html' class='hover:text-primary transition'>Agents</a>
+          <a href='contact.html' class='hover:text-primary transition'>Contact</a>
+        </div>
+        <button id='mobile-menu-btn' class='md:hidden' aria-label='Open menu'>
+          <svg class='w-6 h-6' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
+            <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'/>
+          </svg>
+        </button>
+      </div>
+      <div id='mobile-menu' class='hidden md:hidden pt-2 pb-2'>
+        <a href='index.html' class='block py-2'>Home</a>
+        <a href='listings.html' class='block py-2'>Listings</a>
+        <a href='agents.html' class='block py-2'>Agents</a>
+        <a href='contact.html' class='block py-2'>Contact</a>
+      </div>
+    </div>
+  </nav>
+  <script>
+    document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+
+  <!-- Page Hero -->
+  <section class='pt-20 pb-8 bg-gray-50'>
+    <div class='container mx-auto px-6'>
+      <h1 class='text-3xl font-bold mb-4'>Property Listings</h1>
+      <p class='text-gray-600'>Browse today's available homes. Refine by location, price, beds, and more.</p>
+    </div>
+  </section>
+
+  <!-- Filters -->
+  <section class='px-6 pb-8'>
+    <div class='container mx-auto'>
+      <form id='filters' class='grid md:grid-cols-4 gap-4 bg-white p-4 rounded-lg shadow'>
+        <div>
+          <label class='block text-sm font-semibold mb-1'>Location</label>
+          <input id='loc' type='text' placeholder='City, neighborhood' class='w-full border border-gray-300 rounded px-3 py-2' />
+        </div>
+        <div>
+          <label class='block text-sm font-semibold mb-1'>Min Price</label>
+          <input id='min' type='number' min='0' placeholder='0' class='w-full border border-gray-300 rounded px-3 py-2' />
+        </div>
+        <div>
+          <label class='block text-sm font-semibold mb-1'>Max Price</label>
+          <input id='max' type='number' min='0' placeholder='Any' class='w-full border border-gray-300 rounded px-3 py-2' />
+        </div>
+        <div>
+          <label class='block text-sm font-semibold mb-1'>Beds</label>
+          <input id='beds' type='number' min='0' placeholder='Any' class='w-full border border-gray-300 rounded px-3 py-2' />
+        </div>
+        <div>
+          <label class='block text-sm font-semibold mb-1'>Baths</label>
+          <input id='baths' type='number' min='0' placeholder='Any' class='w-full border border-gray-300 rounded px-3 py-2' />
+        </div>
+        <div>
+          <label class='block text-sm font-semibold mb-1'>Type</label>
+          <select id='type' class='w-full border border-gray-300 rounded px-3 py-2'>
+            <option value=''>Any</option>
+            <option value='House'>House</option>
+            <option value='Condo'>Condo</option>
+            <option value='Townhouse'>Townhouse</option>
+          </select>
+        </div>
+        <div class='flex items-end'>
+          <button type='button' id='apply' class='w-full bg-primary text-white px-4 py-2 rounded'>Apply Filters</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Listings Grid -->
+  <section class='py-6'>
+    <div class='container mx-auto px-6'>
+      <div id='listings' class='grid md:grid-cols-3 gap-6'></div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class='bg-gray-900 text-white py-12'>
+    <div class='container mx-auto px-6'>
+      <div class='grid md:grid-cols-3 gap-8'>
+        <div>
+          <h3 class='text-xl font-bold mb-2'>Everest Real Estate</h3>
+          <p class='text-gray-400'>Your trusted partner for buying, selling, and investing in real estate.</p>
+        </div>
+        <div>
+          <h4 class='font-semibold mb-2'>Quick Links</h4>
+          <ul class='text-gray-400 space-y-1'>
+            <li><a href='index.html' class='hover:text-white'>Home</a></li>
+            <li><a href='listings.html' class='hover:text-white'>Listings</a></li>
+            <li><a href='agents.html' class='hover:text-white'>Agents</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class='font-semibold mb-2'>Contact</h4>
+          <p class='text-gray-400'>hello@everestre.com</p>
+          <p class='text-gray-400'>555-123-9876</p>
+        </div>
+      </div>
+      <div class='border-t border-gray-800 mt-6 pt-6 text-center text-gray-400'>
+        <p>&copy; 2025 Everest Real Estate. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sample dataset for listings (simulated IDX feed)
+    const listings = [
+      { id: 1, title: 'Modern Family Home', price: 689000, location: 'Riverside, CA', beds: 4, baths: 3, type: 'House', image: 'https://source.unsplash.com/800x600/?house,modern,interior', bedsLabel: '4 Beds' },
+      { id: 2, title: 'Lux City View Villa', price: 1150000, location: 'Downtown, Seattle', beds: 5, baths: 4, type: 'House', image: 'https://source.unsplash.com/800x600/?villa,city', bedsLabel: '5 Beds' },
+      { id: 3, title: 'Cozy 3BR Condo', price: 589000, location: 'North Park, Chicago', beds: 3, baths: 2, type: 'Condo', image: 'https://source.unsplash.com/800x600/?condo,city', bedsLabel: '3 Beds' },
+      { id: 4, title: 'Sunny Townhome with Backyard', price: 749000, location: 'Sunset District, Portland', beds: 4, baths: 3, type: 'Townhouse', image: 'https://source.unsplash.com/800x600/?townhouse,backyard', bedsLabel: '4 Beds' },
+      { id: 5, title: 'Beachfront Retreat', price: 1350000, location: 'Malibu, CA', beds: 4, baths: 3, type: 'House', image: 'https://source.unsplash.com/800x600/?beachhouse,sea', bedsLabel: '4 Beds' },
+      { id: 6, title: 'Elegant Apartment Loft', price: 420000, location: 'Brooklyn, NY', beds: 2, baths: 2, type: 'Condo', image: 'https://source.unsplash.com/800x600/?loft,apartment', bedsLabel: '2 Beds' }
+    ];
+
+    // Render function
+    function renderListings(items) {
+      const container = document.getElementById('listings');
+      container.innerHTML = '';
+      if (!items.length) {
+        container.innerHTML = `<div class='col-span-3 text-center text-gray-600'>No results. Try adjusting filters.</div>`;
+        return;
+      }
+      items.forEach(it => {
+        const card = document.createElement('article');
+        card.className = 'bg-white rounded-xl shadow-lg overflow-hidden';
+        card.innerHTML = `
+          <img alt='${it.title}' src='${it.image}' class='w-full h-48 object-cover'>
+          <div class='p-4'>
+            <h3 class='font-semibold text-xl'>${it.title}</h3>
+            <p class='text-gray-600 mb-2'>${it.location} • ${it.bedsLabel} • ${it.baths} Baths</p>
+            <div class='flex items-center justify-between'>
+              <span class='font-bold'>$${Number(it.price).toLocaleString()}</span>
+              <a href='property.html?id=${it.id}' class='text-white bg-primary px-4 py-2 rounded'>View</a>
+            </div>
+          </div>`;
+        container.appendChild(card);
+      });
+    }
+
+    // Initial render
+    renderListings(listings);
+
+    // Apply filters
+    document.getElementById('apply').addEventListener('click', () => {
+      const loc = (document.getElementById('loc').value || '').toLowerCase();
+      const min = Number(document.getElementById('min').value) || 0;
+      const max = Number(document.getElementById('max').value) || Number.POSITIVE_INFINITY;
+      const beds = Number(document.getElementById('beds').value) || 0;
+      const baths = Number(document.getElementById('baths').value) || 0;
+      const type = document.getElementById('type').value;
+      const filtered = listings.filter(l => {
+        const inLocation = !loc || l.location.toLowerCase().includes(loc);
+        const inPrice = l.price >= min && l.price <= max;
+        const inBeds = l.beds >= beds;
+        const inBaths = l.baths >= baths;
+        const inType = !type || l.type === type;
+        return inLocation && inPrice && inBeds && inBaths && inType;
+      });
+      renderListings(filtered);
+    });
+
+  </script>
+
+  <script>
+    // JSON-LD for SEO
+    const jsonld = {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Everest Real Estate",
+      "url": "https://www.everestre.com/listings.html",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.everestre.com/listings.html?location={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(jsonld);
+    document.head.appendChild(script);
+  </script>
+</body>
+</html>
