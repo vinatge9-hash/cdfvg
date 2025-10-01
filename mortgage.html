@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Mortgage Calculator | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>tailwind.config={theme:{extend:{colors:{primary:'#1E3A8A',secondary:'#2563EB',accent:'#F59E0B'}}}};</script>
+  <style> html{scroll-behavior:smooth;} </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary'>Home</a>
+          <a href='listings.html' class='hover:text-primary'>Listings</a>
+          <a href='contact.html' class='hover:text-primary'>Contact</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <header class='pt-20 pb-6 bg-gradient-to-br from-primary to-secondary text-white'>
+    <div class='container mx-auto px-6'>
+      <h1 class='text-3xl font-bold'>Mortgage Calculator</h1>
+      <p class='mt-2'>Estimate monthly payments to help you plan your purchase with confidence.</p>
+    </div>
+  </header>
+
+  <main class='py-12'>
+    <section class='container mx-auto px-6'>
+      <div class='bg-white p-6 rounded-lg shadow'>
+        <div class='grid md:grid-cols-3 gap-4'>
+          <div>
+            <label class='block text-sm font-semibold mb-1'>Property Price</label>
+            <input id='price' type='number' class='w-full border border-gray-300 rounded px-3 py-2' placeholder='0' />
+          </div>
+          <div>
+            <label class='block text-sm font-semibold mb-1'>Down Payment</label>
+            <input id='down' type='number' class='w-full border border-gray-300 rounded px-3 py-2' placeholder='0' />
+          </div>
+          <div>
+            <label class='block text-sm font-semibold mb-1'>Interest Rate %</label>
+            <input id='rate' type='number' step='0.01' class='w-full border border-gray-300 rounded px-3 py-2' placeholder='3.5' value='3.5' />
+          </div>
+          <div>
+            <label class='block text-sm font-semibold mb-1'>Term (years)</label>
+            <input id='years' type='number' class='w-full border border-gray-300 rounded px-3 py-2' placeholder='30' value='30' />
+          </div>
+          <div class='md:col-span-2'>
+            <button id='calc' class='bg-primary text-white px-4 py-2 rounded'>Calculate</button>
+          </div>
+        </div>
+        <p id='monthly' class='mt-4 text-xl font-semibold'>Estimated Monthly: $0</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6 text-center'>
+      <p class='text-gray-400'>© 2025 Everest Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    function calcMonthly(p, down, rate, years) {
+      const loan = Math.max(0, p - (down||0));
+      const r = (rate||0) / 100 / 12;
+      const n = (years||30) * 12;
+      if (loan <= 0 || r === 0) return loan / n;
+      return loan * r / (1 - Math.pow(1 + r, -n));
+    }
+    document.getElementById('calc').addEventListener('click', ()=>{
+      const price = Number(document.getElementById('price').value) || 0;
+      const down = Number(document.getElementById('down').value) || 0;
+      const rate = Number(document.getElementById('rate').value) || 0;
+      const years = Number(document.getElementById('years').value) || 30;
+      const m = calcMonthly(price, down, rate, years);
+      document.getElementById('monthly').textContent = `Estimated Monthly: $${m.toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0})}`;
+    });
+  </script>
+</body>
+</html>
