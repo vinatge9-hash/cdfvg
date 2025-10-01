@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='UTF-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+  <title>Property Details | Everest Real Estate</title>
+  <script src='https://cdn.tailwindcss.com'></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { primary: '#1E3A8A', secondary: '#2563EB', accent: '#F59E0B' } } } }
+  </script>
+  <style>
+    @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+    .animate-fadeIn { animation: fadeIn .6s ease-out forwards; }
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class='font-sans antialiased text-gray-800'>
+  <!-- Nav -->
+  <nav class='fixed w-full bg-white shadow-md z-50'>
+    <div class='container mx-auto px-6 py-4'>
+      <div class='flex items-center justify-between'>
+        <div class='text-2xl font-bold text-primary'>Everest Real Estate</div>
+        <div class='hidden md:flex space-x-8'>
+          <a href='index.html' class='hover:text-primary transition'>Home</a>
+          <a href='listings.html' class='hover:text-primary transition'>Listings</a>
+          <a href='agents.html' class='hover:text-primary transition'>Agents</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page content -->
+  <main class='pt-24 pb-12'>
+    <section class='container mx-auto px-6'>
+      <div id='gallery' class='mb-6 overflow-hidden rounded-xl shadow-lg'>
+        <!-- Gallery will render here -->
+        <div id='gallery-inner' class='relative h-80 w-full bg-gray-200'></div>
+        <button id='prev' aria-label='Previous' class='absolute left-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow'>‹</button>
+        <button id='next' aria-label='Next' class='absolute right-2 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow'>›</button>
+      </div>
+      <div class='grid md:grid-cols-2 gap-6'>
+        <div>
+          <h1 class='text-3xl font-bold mb-2' id='title'>Property Title</h1>
+          <p class='text-gray-700 mb-4' id='location'>City, State</p>
+          <p class='text-2xl font-semibold' id='price'>$0</p>
+          <ul class='list-disc pl-5 text-gray-700' id='features'>
+            <li>4 Bedrooms</li>
+            <li>3 Bathrooms</li>
+            <li>2,350 sq ft</li>
+            <li>Lot 0.25 acres</li>
+          </ul>
+        </div>
+        <div>
+          <div class='bg-white p-4 rounded-lg shadow'>
+            <h3 class='font-semibold mb-2'>Mortgage Calculator</h3>
+            <div class='grid gap-2'>
+              <label class='text-sm'>Price</label>
+              <input id='price' type='number' class='w-full border border-gray-300 rounded px-3 py-2' />
+              <label class='text-sm'>Down Payment</label>
+              <input id='down' type='number' class='w-full border border-gray-300 rounded px-3 py-2' />
+              <label class='text-sm'>Annual Interest %</label>
+              <input id='rate' type='number' step='0.01' class='w-full border border-gray-300 rounded px-3 py-2' value='3.5' />
+              <label class='text-sm'>Term (years)</label>
+              <input id='years' type='number' class='w-full border border-gray-300 rounded px-3 py-2' value='30' />
+            </div>
+            <button id='calc' class='mt-3 w-full bg-primary text-white py-2 rounded'>Calculate</button>
+            <p class='mt-2' id='monthly'>Estimated Monthly: $0</p>
+          </div>
+        </div>
+      </div>
+      <section class='mt-6'>
+        <h2 class='text-2xl font-bold mb-2'>Schedule a Tour</h2>
+        <form id='tour-form' class='grid md:grid-cols-2 gap-4 bg-white p-4 rounded-lg shadow'>
+          <input type='text' placeholder='Your Name' required class='border border-gray-300 rounded px-3 py-2' />
+          <input type='email' placeholder='Email' required class='border border-gray-300 rounded px-3 py-2' />
+          <input type='tel' placeholder='Phone' class='border border-gray-300 rounded px-3 py-2' />
+          <input type='date' required class='border border-gray-300 rounded px-3 py-2' />
+          <button type='submit' class='md:col-span-2 bg-primary text-white py-2 rounded'>Request Tour</button>
+        </form>
+        <div id='tour-message' class='hidden mt-3 p-3 bg-green-100 text-green-800 rounded'></div>
+      </section>
+    </section>
+  </main>
+
+  <footer class='bg-gray-900 text-white py-8'>
+    <div class='container mx-auto px-6'>
+      <p class='text-center text-gray-400'>© 2025 Everest Real Estate. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Demo gallery and details (uses dataset from listings.js idea, defined here for demo)
+    const list = [
+      { id: 1, title: 'Modern Family Home', location: 'Riverside, CA', price: 689000, images: [
+        'https://source.unsplash.com/1200x800/?house,modern',
+        'https://source.unsplash.com/1200x800/?livingroom,modern',
+        'https://source.unsplash.com/1200x800/?kitchen,modern'
+      ] },
+      { id: 2, title: 'Lux City View Villa', location: 'Downtown, Seattle', price: 1150000, images: [
+        'https://source.unsplash.com/1200x800/?villa,city',
+        'https://source.unsplash.com/1200x800/?pool,villa',
+        'https://source.unsplash.com/1200x800/?tvroom,villa'
+      ] }
+    ];
+
+    // Pick listing by id param
+    const urlParams = new URLSearchParams(window.location.search);
+    const id = Number(urlParams.get('id')) || 1;
+    const listing = list.find(l => l.id === id) || list[0];
+
+    // Gallery render
+    const galleryInner = document.getElementById('gallery-inner');
+    let imgIndex = 0;
+    function renderGallery() {
+      const img = listing.images[imgIndex];
+      galleryInner.innerHTML = `<img src='${img}' alt='Property image' class='w-full h-full object-cover'/>`;
+    }
+    renderGallery();
+    document.getElementById('prev').addEventListener('click', () => {
+      imgIndex = (imgIndex - 1 + listing.images.length) % listing.images.length;
+      renderGallery();
+    });
+    document.getElementById('next').addEventListener('click', () => {
+      imgIndex = (imgIndex + 1) % listing.images.length;
+      renderGallery();
+    });
+
+    // Details
+    document.getElementById('title').textContent = listing.title;
+    document.getElementById('location').textContent = listing.location;
+    document.getElementById('price').textContent = `$${listing.price.toLocaleString()}`;
+
+    // Mortgage calc
+    function calcMonthly(p, down, rate, years) {
+      const loan = Math.max(0, p - (down || 0));
+      const r = (rate || 0) / 100 / 12;
+      const n = (years || 30) * 12;
+      if (loan <= 0) return 0;
+      return loan * r / (1 - Math.pow(1 + r, -n));
+    }
+    document.getElementById('calc').addEventListener('click', () => {
+      const price = Number(document.getElementById('price').value) || listing.price;
+      const down = Number(document.getElementById('down').value) || 0;
+      const rate = Number(document.getElementById('rate').value) || 3.5;
+      const years = Number(document.getElementById('years').value) || 30;
+      const m = calcMonthly(price, down, rate, years);
+      document.getElementById('monthly').textContent = `Estimated Monthly: $${m.toLocaleString(undefined, {minimumFractionDigits:0, maximumFractionDigits:0})}`;
+    });
+
+    // Tour form
+    document.getElementById('tour-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = e.target.elements[0].value;
+      const email = e.target.elements[1].value;
+      const msg = `Thanks ${name}! A member of our team will contact ${email} to schedule your tour.`;
+      const tourMsg = document.getElementById('tour-message');
+      tourMsg.textContent = msg;
+      tourMsg.classList.remove('hidden');
+      e.target.reset();
+    });
+
+    // JSON-LD
+    const ld = {
+      "@context": "https://schema.org",
+      "@type": "SingleFamilyResidence",
+      "name": listing.title,
+      "image": listing.images[0],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": listing.location,
+        "addressCountry": "US"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": listing.price,
+        "priceCurrency": "USD"
+      }
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(ld);
+    document.head.appendChild(script);
+  </script>
+</body>
+</html>
